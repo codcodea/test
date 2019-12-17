@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Test page</title>
+</head>
+<body>
+
+  <div id="myForm" >
+
+    <form id="theForm">
+
+        <input type="file" value="Välj bild" id="sourceImg"> <br>
+        <input type="submit" value="Färgbild"> <br>
+    
+    </form>
+</div>
+
+  <p id="aaa"> test page </p>
+  
+<script>
+
+const myForm = document.getElementById("theForm");
+const passedImg = document.getElementById("sourceImg");
+
+myForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    console.log("hej hej");
+
+    document.getElementById("aaa").innerHTML = "rest page";
+
+    getData()
+})
+
+async function getData() {
+
+
+  try {
+  const promise = await fetch('/test')
+  const data = await promise.text()
+  
+  console.log(data)
+ 
+
+  if (promise.ok === true) {
+  
+  console.log('Server response ' + promise.statusText)
+  document.getElementById("aaa").innerHTML = "success";
+
+  }
+
+  } catch { (error => console.log(error)) 
+  }
+
+}
+
+
+
+
+</script>
+
+
+
+</body>
+</html>
+
